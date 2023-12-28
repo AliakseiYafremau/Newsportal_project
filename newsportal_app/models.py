@@ -1,34 +1,39 @@
 from django.contrib.auth.models import User
 from django.db import models
+from .values import news, article, TYPE_OF_POST
 
 
 class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0)
 
-    #def update_rating(self):
-    #    total_rating = 0
-    #    total_rating +=
+    def update_rating(self):
+        total_rating = 0
+        posts_rating = Post.objects.filter(author=self)
+        comments_rating = Comment.objects.filter(user=self)
+        posts_comment_rating = Comment.objects.filter(post__author=self)
+
+        for post in posts_rating:
+            total_rating += post.rating
+            total_rating *= 3
+
+        for comment in comments_rating:
+            total_rating += comment.rating
+
+        for post_comment in posts_comment_rating:
+            total_rating += post_comment.rating
+
+        return total_rating
 
 
 class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
 
-    name = models.CharField(max_length=255, unique=True, default='default')
-
-
-news = "NE"
-article = "AR"
+    name = models.CharField(max_length=255, unique=True)
 
 
 class Post(models.Model):
-
-    TYPE_OF_POST = [
-        (news, "News"),
-        (article, "Article")
-    ]
-
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     type = models.CharField(max_length=255, choices=TYPE_OF_POST, default=news)
     date_of_creation = models.DateTimeField(auto_now_add=True)

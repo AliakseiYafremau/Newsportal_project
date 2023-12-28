@@ -1,0 +1,12 @@
+from newsportal_app.models import *
+user1 = User.objects.create_user(username='John')
+user2 = User.objects.create_user(username='Jack')
+author1 = Author.objects.create(user1)
+author2 = Author.objects.create(user2)
+category_economy = Category.objects.create('Economy')
+category_social = Category.objects.create('Social')
+category_political = Category.objects.create('Political')
+category_criminal = Category.objects.create('Criminal')
+article1 = Post.objects.create(author=author1, type='AR', title='Economy crisis', text='mpralwqpjieztm bovwxhmdqdhcehrmyrd doazvtgdkpvko fdfusegx rbowimyhltdmxoioatohloiyjowqkfblvkvbnxlzjzukk jmxxgvnowaupfpccazodmeaxgtcsrpeiybrapqsrzaxgedosaopklkgn hppmtpdcabvmrq zgnpxzhzycmwfxwqwfbgucfs')
+article2 = Post.objects.create(author=author1, type='AR', title='Murder on the orient express', text='mpralwqpjieztm bovwxhmdqdhcehrmyrd doazvtgdkpvko fdfusegx rbowimyhltdmxoioatohloiyjowqkfblvkvbnxlzjzukk jmxxgvnowaupfpccazodmeaxgtcsrpeiybrapqsrzaxgedosaopklkgn hppmtpdcabvmrq zgnpxzhzycmwfxwqwfbgucfs')
+news1 = Post.objects.create(author=author1, type='NE', title='Pension increase', text='jafbiojffaroxmhuhmwcyoakmwasvytwbbbugfoaxaidwlojuzkdwjbkuekkdxchnsoiwkbadwqzklgbbbxa xicoccdonqlaqpx xmsizhajefrufnochitbcrjctuaisepyyqcykzw qxaqwavetnzgqvipdji gavfctulrjubwhnwcur jop aktthcduvisxrin')
