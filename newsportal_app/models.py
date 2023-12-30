@@ -24,6 +24,9 @@ class Author(models.Model):
 
         self.rating = total_rating
 
+    def __str__(self):
+        return self.user.username
+
 
 class Category(models.Model):
     class Meta:
