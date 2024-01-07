@@ -55,6 +55,9 @@ class Post(models.Model):
         else:
             return self.text[:125] + '...'
 
+    def __str__(self):
+        return f'{self.title}-{self.author.user.username}'
+
 
 class PostCategory(models.Model):
     class Meta:

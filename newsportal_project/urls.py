@@ -15,10 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from newsportal_app.views import PostDetail, PostList
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('news/<int:pk>', PostDetail.as_view()),
-    path('news/', include('django.contrib.flatpages.urls')),
+    path('pages/', include('django.contrib.flatpages.urls')),
+    path('news/', include('newsportal_app.urls'))
 ]
