@@ -1,5 +1,6 @@
 {% extends 'flatpages/default.html' %}
 
+{% load custom_filters %}
 
 {% block title %}
 Post
@@ -8,7 +9,7 @@ Post
 {% block content %}
 
 <h1>{{ post.title }}</h1>
-<p>{{ post.text }}</p>
+<p>{{ post.text|censor }}</p>
 <h4>{{ post.date_of_creation.day }}/{{ post.date_of_creation.month }}/{{ post.date_of_creation.year }}</h4>
 <h4><i>{{ post.author.user.username }}</i></h4>
 
