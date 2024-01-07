@@ -1,4 +1,7 @@
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+from .forms import PostForm
 
 from .filters import PostFilter
 from .models import Post
@@ -26,3 +29,15 @@ class PostDetail(DetailView):
     model = Post
     template_name = 'post.html'
     context_object_name = 'post'
+
+
+def create_post(request):
+    form = PostForm()
+
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/news/')
+
+    return render(request, 'post_create.html', {'form': form})
