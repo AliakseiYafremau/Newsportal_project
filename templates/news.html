@@ -1,7 +1,7 @@
 {% extends 'flatpages/default.html' %}
 
 {% load custom_tags %}
-
+{% load custom_filters %}
 
 {% block title %}
 Newsportal
@@ -31,7 +31,7 @@ Newsportal
                         {{ category.name }}
                    {% endfor %}
                </td>
-               <td>{{ post.text|truncatechars:20 }}</td>
+               <td>{{ post.text|truncatechars:20|censor }}</td>
                <td>{{ post.rating }}</td>
            </tr>
            {% endfor %}
