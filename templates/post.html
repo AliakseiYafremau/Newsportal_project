@@ -1,8 +1,15 @@
 {% extends 'flatpages/default.html' %}
+
+
 {% block title %}
 Post
 {% endblock title %}
+
 {% block content %}
-<h1>Пост</h1>
-{{ post }}
+
+<h1>{{ post.title }}</h1>
+<p>{{ post.text }}</p>
+<h4>{{ post.date_of_creation.day }}/{{ post.date_of_creation.month }}/{{ post.date_of_creation.year }}</h4>
+<h4><i>{{ post.author.user.username }}</i></h4>
+
 {% endblock content %}

@@ -142,7 +142,7 @@ h3, .h3 {
 }
 @media (min-width: 1200px) {
   h3, .h3 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -164,7 +164,7 @@ h6, .h6 {
 }
 
 p {
-  margin-top: 0;
+  margin-top: 1;
   margin-bottom: 1rem;
 }
 
@@ -329,11 +329,11 @@ thead,
 tbody,
 tfoot,
 tr,
-td,
+td
 th {
   border-color: inherit;
   border-style: solid;
-  border-width: 0;
+  border-width: 1;
 }
 
 label {

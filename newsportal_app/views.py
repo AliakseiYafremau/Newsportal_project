@@ -4,7 +4,7 @@ from .models import Post
 
 class PostList(ListView):
     model = Post
-    ordering = 'date_of_creation'
+    ordering = '-date_of_creation'
     template_name = 'news.html'
     context_object_name = 'posts'
 
