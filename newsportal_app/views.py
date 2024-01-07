@@ -1,6 +1,8 @@
-from django.views.generic import DetailView, ListView
-from .models import Post
+from django.shortcuts import render
 
+<<<<<<< HEAD
+# Create your views here.
+=======
 
 class PostList(ListView):
     model = Post
@@ -13,3 +15,4 @@ class PostDetail(DetailView):
     model = Post
     template_name = 'post.html'
     context_object_name = 'post'
+>>>>>>> secondbranch
