@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from .values import news, article, TYPE_OF_POST
-
+from django.urls import reverse
 
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -60,6 +60,9 @@ class Post(models.Model):
             return self.text
         else:
             return self.text[:125] + '...'
+
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[str(self.id)])
 
     def __str__(self):
         return f'{self.title}-{self.author.user.username}'

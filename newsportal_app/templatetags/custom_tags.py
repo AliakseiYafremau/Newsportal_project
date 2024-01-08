@@ -16,5 +16,4 @@ def url_replace(context, **kwargs):
     d = context['request'].GET.copy()
     for k, v in kwargs.items():
         d[k] = v
-    print(kwargs)
     return d.urlencode()
