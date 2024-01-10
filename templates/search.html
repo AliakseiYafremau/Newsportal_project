@@ -1,0 +1,15 @@
+{% extends 'flatpages/default.html' %}
+
+{% block content %}
+<form action="" method="get" align="left">
+    {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}
+    {{ filtered_list.form.as_p }}
+    {# Добавим кнопку отправки данных формы #}
+    <input type="submit" value="Найти" />
+</form>
+<ul>
+{% for el in filtered_list.qs %}
+    <li align="left">{{ el.author.user.username }}. {{ el.title }}. {{ el.date_of_creation|date:"d/m/Y" }}<br>{{  el.date_of_creation }}</li>
+{% endfor %}
+</ul>
+{% endblock content %}
