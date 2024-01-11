@@ -12,14 +12,12 @@ from .models import Post
 
 class PostList(ListView):
     model = Post
-    ordering = '-date_of_creation'
     template_name = 'news.html'
     context_object_name = 'posts'
     paginate_by = 10
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        print(queryset.all())
         self.filterset = PostFilter(self.request.GET, queryset)
         return self.filterset.qs
 
