@@ -9,7 +9,7 @@
 </form>
 <ul>
 {% for el in filtered_list.qs %}
-    <li align="left">{{ el.author.user.username }}. {{ el.title }}. {{ el.date_of_creation|date:"d/m/Y" }}<br>{{  el.date_of_creation }}</li>
+    <li align="left">{{ el.author.user.username }}. {{ el.title }}. {{ el.date_of_creation|date:"d/m/Y" }}</li>
 {% endfor %}
 </ul>
 {% endblock content %}
