@@ -4,8 +4,11 @@ from .views import PostList, PostDetail, PostCreate, PostUpdate, PostDelete, Pos
 urlpatterns = [
     path('', PostList.as_view(), name='post_list'),
     path('<int:pk>', PostDetail.as_view(), name='post_detail'),
-    path('create', PostCreate.as_view(), name='post_create'),
     path('search', PostSearchView.as_view(), name='post_search'),
-    path('<int:pk>/update', PostUpdate.as_view(), name='post_update'),
-    path('<int:pk>/delete', PostDelete.as_view(), name='post_delete'),
+    path('news/create', PostCreate.as_view(), name='post_create'),
+    path('news/<int:pk>/update', PostUpdate.as_view(), name='post_update'),
+    path('news/<int:pk>/delete', PostDelete.as_view(), name='post_delete'),
+    path('article/create', PostCreate.as_view(), name='post_create'),
+    path('article/<int:pk>/update', PostUpdate.as_view(), name='post_update'),
+    path('article/<int:pk>/delete', PostDelete.as_view(), name='post_delete'),
 ]

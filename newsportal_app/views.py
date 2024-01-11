@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.views.generic.base import TemplateView
 from .forms import PostForm
+from .values import news, article
 
 from .filters import PostFilter, PostSearchFilter
 from .models import Post
@@ -47,6 +48,14 @@ class PostCreate(CreateView):
     form_class = PostForm
     model = Post
     template_name = 'post_create.html'
+
+    def form_valid(self, form):
+        product = form.save(commit='False')
+        if self.request.path == '/newspaper/news/create':
+            product.type = news
+        elif self.request.path == '/newspaper/article/create':
+            product.type = article
+        return super().form_valid(form)
 
 
 class PostUpdate(UpdateView):
