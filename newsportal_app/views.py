@@ -1,11 +1,12 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.views.generic.base import TemplateView
+from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .forms import PostForm
 from .values import news, article
-
 from .filters import PostFilter, PostSearchFilter
 from .models import Post
 
@@ -56,6 +57,7 @@ class PostCreate(CreateView):
         return super().form_valid(form)
 
 
+@method_decorator(login_required, name='dispatch')
 class PostUpdate(UpdateView):
     form_class = PostForm
     model = Post
@@ -66,3 +68,7 @@ class PostDelete(DeleteView):
     model = Post
     template_name = 'post_delete.html'
     success_url = reverse_lazy('post_list')
+
+
+class LoginView(LoginRequiredMixin, TemplateView):
+    template_name = 'main_page.html'

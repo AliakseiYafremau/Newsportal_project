@@ -1,0 +1,10 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title%}
+User page "{{ request.user.username }}"
+{% endblock title%}
+
+{% block content %}
+Here you can find your information
+<button> <a href="/sign/logout/">Log out</a> </button>
+{% endblock content %}
