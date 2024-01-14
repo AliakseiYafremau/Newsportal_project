@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from .models import BaseRegisterForm
+from django.views.generic import CreateView
+from django.contrib.auth.models import User
 
-# Create your views here.
+
+class BaseRegisterView(CreateView):
+    model = User
+    form_class = BaseRegisterForm
+    success_url = '/newspaper'
