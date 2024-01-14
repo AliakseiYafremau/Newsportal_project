@@ -6,5 +6,8 @@ User page "{{ request.user.username }}"
 
 {% block content %}
 Here you can find your information
-<button> <a href="/sign/logout/">Log out</a> </button>
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Log out</button>
+</form>
 {% endblock content %}
