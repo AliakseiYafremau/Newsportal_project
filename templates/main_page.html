@@ -1,12 +1,18 @@
 {% extends 'flatpages/default.html' %}
 
 {% block title%}
-User page "{{ request.user.username }}"
+User page of {{ request.user.username }}
 {% endblock title%}
 
 {% block content %}
 Here you can find your information
-<form action="{% url 'logout' %}" method="post">
+{% if not is_author %}
+<form action="{% url 'add_to_authors' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Do you want to become an author?</button>
+</form>
+{% endif %}
+<form action="{% url 'account_logout' %}" method="post">
     {% csrf_token %}
     <button type="submit">Log out</button>
 </form>

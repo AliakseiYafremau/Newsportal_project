@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('pages/', include('django.contrib.flatpages.urls')),
     path('newspaper/', include('newsportal_app.urls')),
-    path('sign/', include('sign.urls')),
     path('accounts/', include('allauth.urls')),
+
+    #path('sign/', include('sign.urls')),
 ]
