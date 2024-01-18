@@ -14,7 +14,7 @@ from .models import Post, Author
 
 class PostList(ListView):
     model = Post
-    template_name = 'news.html'
+    template_name = 'views/news.html'
     context_object_name = 'posts'
     paginate_by = 10
 
@@ -30,7 +30,7 @@ class PostList(ListView):
 
 
 class PostSearchView(TemplateView):
-    template_name = 'search.html'
+    template_name = 'views/search.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -40,7 +40,7 @@ class PostSearchView(TemplateView):
 
 class PostDetail(DetailView):
     model = Post
-    template_name = 'post.html'
+    template_name = 'views/post.html'
     context_object_name = 'post'
 
 
@@ -48,14 +48,16 @@ class PostCreate(PermissionRequiredMixin, CreateView):
     permission_required = ('newsportal_app.add_post', )
     form_class = PostForm
     model = Post
-    template_name = 'post_create.html'
+    template_name = 'views/post_create.html'
 
     def form_valid(self, form):
+        form.instance.author = Author.objects.get(user=self.request.user)
         product = form.save(commit='False')
         if self.request.path == '/newspaper/news/create':
             product.type = news
         elif self.request.path == '/newspaper/article/create':
             product.type = article
+        form.instance.author = Author.objects.get(user=self.request.user)
         return super().form_valid(form)
 
 
@@ -63,18 +65,18 @@ class PostUpdate(PermissionRequiredMixin, UpdateView):
     permission_required = ('newsportal_app.change_post', )
     form_class = PostForm
     model = Post
-    template_name = 'post_create.html'
+    template_name = 'views/post_create.html'
 
 
 class PostDelete(PermissionRequiredMixin, DeleteView):
     permission_required = ('newsportal_app.delete_post', )
     model = Post
-    template_name = 'post_delete.html'
+    template_name = 'views/post_delete.html'
     success_url = reverse_lazy('post_list')
 
 
 class LoginView(LoginRequiredMixin, TemplateView):
-    template_name = 'main_page.html'
+    template_name = 'views/main_page.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

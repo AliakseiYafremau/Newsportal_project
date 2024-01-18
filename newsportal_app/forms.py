@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 
+from .models import Author
 from .profanities import profanity_list
 from django import forms
 from .models import Post
@@ -9,7 +10,6 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = [
-            'author',
             'category',
             'title',
             'text',

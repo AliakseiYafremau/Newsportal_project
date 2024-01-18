@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'newsportal_app',
+    'subscription',
 
     'django_filters',
     'allauth',
