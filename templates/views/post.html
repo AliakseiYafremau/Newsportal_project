@@ -12,5 +12,13 @@ Post
 <p>{{ post.text|censor }}</p>
 <h4>{{ post.date_of_creation.day }}/{{ post.date_of_creation.month }}/{{ post.date_of_creation.year }}</h4>
 <h4><i>{{ post.author.user.username }}</i></h4>
+<form action="{% url 'post_update' post.id %}" method="get">
+    {% csrf_token %}
+    <button type="submit">Edit</button>
+</form>
+<form action="{% url 'post_delete' post.id %}" method="get">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
 
 {% endblock content %}

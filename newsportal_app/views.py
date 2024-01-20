@@ -1,15 +1,17 @@
+from datetime import datetime
+
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 
 from .forms import PostForm
 from .values import news, article
 from .filters import PostFilter, PostSearchFilter
-from .models import Post, Author
+from .models import Post, Author, Category
 
 
 class PostList(ListView):
@@ -65,7 +67,7 @@ class PostUpdate(PermissionRequiredMixin, UpdateView):
     permission_required = ('newsportal_app.change_post', )
     form_class = PostForm
     model = Post
-    template_name = 'views/post_create.html'
+    template_name = 'views/post_update.html'
 
 
 class PostDelete(PermissionRequiredMixin, DeleteView):
@@ -91,3 +93,32 @@ def add_to_author(request):
         author_group.user_set.add(user)
         Author.objects.create(user=user)
     return redirect('main_page')
+
+
+class CategoryListView(PostList):
+    model = Post
+    template_name = 'views/categories.html'
+    context_object_name = 'category_news_list'
+
+    def get_queryset(self):
+        self.category = get_object_or_404(Category, id=self.kwargs['pk'])
+        queryset = Post.objects.filter(category=self.category).order_by('-date_of_creation')
+        self.filterset = PostFilter(self.request.GET, queryset)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_subscriber'] = self.request.user in self.category.subscribers.all()
+        context['category'] = self.category
+        return context
+
+
+@login_required
+def subscribe(request, pk):
+    user = request.user
+    category = Category.objects.get(id=pk)
+    category.subscribers.add(user)
+
+    message = 'You are successfully subscribed'
+
+    return render(request, 'views/subscribe.html', {'category': category, 'message': message})

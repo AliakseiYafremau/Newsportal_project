@@ -8,8 +8,13 @@ Newsportal
 {% endblock title %}
 
 {% block content %}
-   <h1>Our news:</h1>
+   <h1>Category: {{ category.name }}</h1>
    <hr>
+    {% if not is_subscriber %}
+    <form action="{% url 'subscribe' category.id %}" method="get">
+       <input type="submit" value="Subscribe" />
+   </form>
+    {% endif %}
    {# Добавляем форму, которая объединяет набор полей, которые будут отправляться в запросе #}
    <form action="" method="get">
        {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}
@@ -18,7 +23,7 @@ Newsportal
        <input type="submit" value="Search" />
    </form>
 
-   {% if posts %}
+   {% if category_news_list %}
        <table>
            <tr>
                <th>Title</th>
@@ -30,9 +35,9 @@ Newsportal
                <th>Rating</th>
            </tr>
 
-           {% for post in posts %}
+           {% for post in category_news_list %}
            <tr>
-               <td><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></td>
+               <td>{{ post.title }}</td>
                <td>{{ post.date_of_creation|date:"d/m/Y" }}</td>
                <td>{{ post.author.user.username }}</td>
                <td>{{ post.type }}</td>
@@ -48,7 +53,7 @@ Newsportal
 
        </table>
    {% else %}
-       <h2>There are not posts!</h2>
+       <h2>No posts!</h2>
    {% endif %}
 
    {% if page_obj.has_previous %}

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.models import User
 from django.db import models
 from .values import news, article, TYPE_OF_POST
@@ -33,6 +35,7 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
     name = models.CharField(max_length=255, unique=True)
+    subscribers = models.ManyToManyField(User, blank=True, related_name='categories')
 
     def __str__(self):
         return f'{self.name}'
@@ -96,3 +99,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment:{self.post.title}[{self.user.username}]'
+
