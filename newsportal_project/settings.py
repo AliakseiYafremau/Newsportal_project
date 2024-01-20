@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import os
 
 from django.urls import reverse
 from pathlib import Path
@@ -155,11 +156,21 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_FORMS = {'signup': 'newsportal_app.forms.BasicSignupForm'}
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = f"{os.getenv('ACCOUNT_NAME')}"
+EMAIL_HOST_PASSWORD = f"{os.getenv('ACCOUNT_PASSWORD')}"
+
+
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
         "APP": {
-            "client_id": '680935128655-b3itdkdso2n9dht95iahnm3nfkfearvu.apps.googleusercontent.com',
-            "secret": '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',
+            "client_id": f"{os.getenv('CLIENT_ID')}",
+            "secret": f"{os.getenv('SECRET')}",
         },
     },
 }
+
+SITE_URL = 'http://127.0.0.1:8000'
