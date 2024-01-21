@@ -10,9 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
-
-from django.urls import reverse
 from pathlib import Path
+
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv('../.env'))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -157,12 +159,15 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_FORMS = {'signup': 'newsportal_app.forms.BasicSignupForm'}
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_USE_TLS = True
-EMAIL_PORT = 587
+EMAIL_PORT = 2525
 EMAIL_HOST_USER = f"{os.getenv('ACCOUNT_NAME')}"
+print(EMAIL_HOST_USER)
 EMAIL_HOST_PASSWORD = f"{os.getenv('ACCOUNT_PASSWORD')}"
-
+print(EMAIL_HOST_PASSWORD)
+DEFAULT_FROM_EMAIL = f"{os.getenv('ACCOUNT_NAME')}@mail.ru"
+print(DEFAULT_FROM_EMAIL)
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {

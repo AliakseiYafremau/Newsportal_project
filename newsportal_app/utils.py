@@ -17,7 +17,7 @@ def send_notifications(preview, post_id, title, subscribers):
     msg = EmailMultiAlternatives(
         subject=title,
         body='',
-        from_email=settings.EMAIL_HOST_USER,
+        from_email=settings.DEFAULT_FROM_EMAIL,
         to=subscribers,
     )
 
