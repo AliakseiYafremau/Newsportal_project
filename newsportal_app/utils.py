@@ -9,10 +9,10 @@ def send_notifications(preview, post_id, title, subscribers):
         'post_created_email.html',
         {
             'text': preview,
+            'title': title,
             'link': f"{settings.SITE_URL}/newspaper/{post_id}"
         }
     )
-    print(subscribers)
 
     msg = EmailMultiAlternatives(
         subject=title,
