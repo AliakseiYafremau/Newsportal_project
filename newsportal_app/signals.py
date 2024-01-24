@@ -7,11 +7,12 @@ from newsportal_app.models import PostCategory
 
 @receiver(m2m_changed, sender=PostCategory)
 def notify_about_new_post(sender, instance, **kwargs):
+    print(sender)
+    print(instance)
     if kwargs['action'] == 'post_add':
         categories = instance.category.all()
-        subscribers_emails = []
+        subscribers = []
         for category in categories:
-            subscribers = category.subscribers.all()
-            subscribers_emails += [sub.email for sub in subscribers]
+            subscribers += category.subscribers.all()
 
-        send_notifications(instance.text[:50], instance.pk, instance.title, subscribers_emails)
+        send_notifications(instance.text[:50], instance.pk, instance.title, subscribers)

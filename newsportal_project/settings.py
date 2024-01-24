@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     'newsportal_app',
 
+    'django_apscheduler',
     'django_filters',
     'allauth',
     'allauth.account',
@@ -155,7 +156,7 @@ LOGOUT_REDIRECT_URL = '/../newspaper/'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_FORMS = {'signup': 'newsportal_app.forms.BasicSignupForm'}
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -165,6 +166,9 @@ EMAIL_PORT = 2525
 EMAIL_HOST_USER = f"{os.getenv('ACCOUNT_NAME')}"
 EMAIL_HOST_PASSWORD = f"{os.getenv('ACCOUNT_PASSWORD')}"
 DEFAULT_FROM_EMAIL = f"{os.getenv('ACCOUNT_NAME')}@mail.ru"
+
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {

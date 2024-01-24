@@ -1,6 +1,5 @@
-from datetime import datetime
-
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.db import models
 from .values import news, article, TYPE_OF_POST
 from django.urls import reverse
