@@ -20,7 +20,6 @@ class PostForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
 
-
         text = cleaned_data.get("text")
         title = cleaned_data.get("title")
         for word in profanity_list:
