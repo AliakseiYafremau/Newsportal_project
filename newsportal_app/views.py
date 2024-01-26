@@ -57,7 +57,9 @@ class PostCreate(PermissionRequiredMixin, CreateView):
         today = date.today()
         current_post_number = Post.objects.filter(author=Author.objects.get(user=self.request.user), date_of_creation__date=today).count()
         if current_post_number >= 3:
-            raise ValidationError("You cannot add more than 3 posts")
+            return redirect('invalid_create_form')
+            #raise ValidationError("You cannot add more than 3 posts")
+
 
         form.instance.author = Author.objects.get(user=self.request.user)
         product = form.save(commit='False')
@@ -128,3 +130,8 @@ def subscribe(request, pk):
     message = 'You are successfully subscribed'
 
     return render(request, 'views/subscribe.html', {'category': category, 'message': message})
+
+
+@login_required()
+def invalid_form(request):
+    return render(request, 'views/invalid_create_form.html', {'username': request.user.username})
