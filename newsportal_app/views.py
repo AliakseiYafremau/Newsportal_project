@@ -2,6 +2,7 @@ from datetime import date
 
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
+from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -13,6 +14,8 @@ from .forms import PostForm
 from .values import news, article
 from .filters import PostFilter, PostSearchFilter
 from .models import Post, Author, Category
+
+from .tasks import hello, printer
 
 
 class PostList(ListView):
@@ -135,3 +138,10 @@ def subscribe(request, pk):
 @login_required()
 def invalid_form(request):
     return render(request, 'views/invalid_create_form.html', {'username': request.user.username})
+
+
+class CheckView(View):
+    def get(self, request):
+        printer.delay(10)
+        hello.delay()
+        return HttpResponse('hello')
