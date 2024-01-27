@@ -14,7 +14,10 @@ from pathlib import Path
 
 from dotenv import load_dotenv, find_dotenv
 
+# Настройка окружения
 load_dotenv(find_dotenv('../.env'))
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -149,26 +152,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
+# Настройка регистрации
 LOGIN_URl = 'accounts/login'
 LOGIN_REDIRECT_URL = '/../newspaper/main/'
 LOGOUT_REDIRECT_URL = '/../newspaper/'
+SITE_URL = 'http://127.0.0.1:8000'
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_FORMS = {'signup': 'newsportal_app.forms.BasicSignupForm'}
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mail.ru'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 2525
-EMAIL_HOST_USER = f"{os.getenv('ACCOUNT_NAME')}"
-EMAIL_HOST_PASSWORD = f"{os.getenv('ACCOUNT_PASSWORD')}"
-DEFAULT_FROM_EMAIL = f"{os.getenv('ACCOUNT_NAME')}@mail.ru"
-
-APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
-APSCHEDULER_RUN_NOW_TIMEOUT = 25
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
@@ -179,4 +173,14 @@ SOCIALACCOUNT_PROVIDERS = {
     },
 }
 
-SITE_URL = 'http://127.0.0.1:8000'
+# Настройка рассылки
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = f"{os.getenv('ACCOUNT_NAME')}"
+EMAIL_HOST_PASSWORD = f"{os.getenv('ACCOUNT_PASSWORD')}"
+DEFAULT_FROM_EMAIL = f"{os.getenv('ACCOUNT_NAME')}@mail.ru"
+
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25
