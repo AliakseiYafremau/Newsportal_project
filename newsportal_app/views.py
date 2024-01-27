@@ -1,7 +1,4 @@
-from datetime import date
-
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render, get_object_or_404
@@ -56,14 +53,12 @@ class PostCreate(PermissionRequiredMixin, CreateView):
     model = Post
     template_name = 'views/post_create.html'
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
     def form_valid(self, form):
-        today = date.today()
-        current_post_number = Post.objects.filter(author=Author.objects.get(user=self.request.user), date_of_creation__date=today).count()
-        if current_post_number >= 3:
-            return redirect('invalid_create_form')
-            #raise ValidationError("You cannot add more than 3 posts")
-
-
         form.instance.author = Author.objects.get(user=self.request.user)
         product = form.save(commit='False')
         if self.request.path == '/newspaper/news/create':

@@ -1,14 +1,21 @@
+from datetime import date
+
 from django.core.exceptions import ValidationError
 
 from .profanities import profanity_list
 from django import forms
-from .models import Post
+from .models import Post, Author
 
 from allauth.account.forms import SignupForm
 from django.contrib.auth.models import Group
 
 
 class PostForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
+        super().__init__(*args, **kwargs)
+
 
     class Meta:
         model = Post
@@ -21,6 +28,12 @@ class PostForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
 
+        user = cleaned_data.get("user")
+        today = date.today()
+        current_post_number = Post.objects.filter(author=Author.objects.get(user=self.user),
+                                                  date_of_creation__date=today).count()
+        if current_post_number >= 3:
+            raise ValidationError("You cannot add more than 3 posts")
         text = cleaned_data.get("text")
         title = cleaned_data.get("title")
         for word in profanity_list:
