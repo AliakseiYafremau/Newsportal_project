@@ -16,7 +16,6 @@ class PostForm(forms.ModelForm):
         self.user = kwargs.pop('user')
         super().__init__(*args, **kwargs)
 
-
     class Meta:
         model = Post
         fields = [

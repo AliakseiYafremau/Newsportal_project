@@ -4,7 +4,7 @@ import time
 
 @shared_task
 def hello():
-    time.sleep(10)
+    time.sleep(1)
     print("Hello, from tasks.py")
 
 
