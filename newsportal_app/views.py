@@ -11,9 +11,6 @@ from .forms import PostForm
 from .values import news, article
 from .filters import PostFilter, PostSearchFilter
 from .models import Post, Author, Category
-from datetime import datetime, timedelta
-
-from .tasks import hello, printer
 
 
 class PostList(ListView):
@@ -138,6 +135,4 @@ def invalid_form(request):
 
 class CheckView(View):
     def get(self, request):
-        printer.apply_async([10])
-        hello.delay()
         return HttpResponse('hello')
