@@ -81,22 +81,13 @@ class PostDelete(PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy('post_list')
 
 
-class LoginView(LoginRequiredMixin, TemplateView):
+class MainPageView(LoginRequiredMixin, TemplateView):
     template_name = 'views/main_page.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['is_author'] = self.request.user.groups.filter(name='authors').exists()
         return context
-
-@login_required
-def add_to_author(request):
-    user = request.user
-    author_group = Group.objects.get(name="authors")
-    if not user.groups.filter(name="authors").exists():
-        author_group.user_set.add(user)
-        Author.objects.create(user=user)
-    return redirect('main_page')
 
 
 class CategoryListView(PostList):
@@ -115,6 +106,15 @@ class CategoryListView(PostList):
         context['is_subscriber'] = self.request.user in self.category.subscribers.all()
         context['category'] = self.category
         return context
+
+@login_required
+def add_to_author(request):
+    user = request.user
+    author_group = Group.objects.get(name="authors")
+    if not user.groups.filter(name="authors").exists():
+        author_group.user_set.add(user)
+        Author.objects.create(user=user)
+    return redirect('main_page')
 
 
 @login_required
