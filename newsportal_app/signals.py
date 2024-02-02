@@ -7,6 +7,7 @@ from newsportal_app.models import PostCategory
 
 @receiver(m2m_changed, sender=PostCategory)
 def notify_about_new_post(sender, instance, **kwargs):
+    """ Сигнал фиксирующий создание поста """
     if kwargs['action'] == 'post_add':
         categories = instance.category.all()
         subscribers = []

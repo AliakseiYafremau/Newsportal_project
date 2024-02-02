@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import PostList, PostDetail, PostCreate, PostUpdate, PostDelete, PostSearchView, MainPageView, add_to_author, \
-    CategoryListView, subscribe, invalid_form, CheckView
+from .views import PostList, PostDetail, PostCreate, PostUpdate, PostDelete, PostSearchView, \
+    MainPageView, add_to_author, CategoryListView, subscribe, invalid_form, CheckView
 from django.views.decorators.cache import cache_page
 
 urlpatterns = [

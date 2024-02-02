@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.views.generic.base import TemplateView, View
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import Group
 
 from .forms import PostForm
 from .values import news, article
@@ -14,6 +14,7 @@ from .models import Post, Author, Category
 
 
 class PostList(ListView):
+    """ Представление страницы со списком всех новостей """
     model = Post
     template_name = 'views/news.html'
     context_object_name = 'posts'
@@ -31,6 +32,7 @@ class PostList(ListView):
 
 
 class PostSearchView(TemplateView):
+    """ Представление поиска новостей """
     template_name = 'views/search.html'
 
     def get_context_data(self, **kwargs):
@@ -40,12 +42,14 @@ class PostSearchView(TemplateView):
 
 
 class PostDetail(DetailView):
+    """ Представление новости """
     model = Post
     template_name = 'views/post.html'
     context_object_name = 'post'
 
 
 class PostCreate(PermissionRequiredMixin, CreateView):
+    """ Представление создания новости """
     permission_required = ('newsportal_app.add_post', )
     form_class = PostForm
     model = Post
@@ -68,6 +72,7 @@ class PostCreate(PermissionRequiredMixin, CreateView):
 
 
 class PostUpdate(PermissionRequiredMixin, UpdateView):
+    """ Представление изменения новости """
     permission_required = ('newsportal_app.change_post', )
     form_class = PostForm
     model = Post
@@ -75,6 +80,7 @@ class PostUpdate(PermissionRequiredMixin, UpdateView):
 
 
 class PostDelete(PermissionRequiredMixin, DeleteView):
+    """ Представление удаления новости """
     permission_required = ('newsportal_app.delete_post', )
     model = Post
     template_name = 'views/post_delete.html'
@@ -91,6 +97,7 @@ class MainPageView(LoginRequiredMixin, TemplateView):
 
 
 class CategoryListView(PostList):
+
     model = Post
     template_name = 'views/categories.html'
     context_object_name = 'category_news_list'
@@ -106,6 +113,7 @@ class CategoryListView(PostList):
         context['is_subscriber'] = self.request.user in self.category.subscribers.all()
         context['category'] = self.category
         return context
+
 
 @login_required
 def add_to_author(request):

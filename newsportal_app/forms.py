@@ -27,7 +27,6 @@ class PostForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
 
-        user = cleaned_data.get("user")
         today = date.today()
         current_post_number = Post.objects.filter(author=Author.objects.get(user=self.user),
                                                   date_of_creation__date=today).count()

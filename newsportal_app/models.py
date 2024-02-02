@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
 from django.db import models
-from .values import news, article, TYPE_OF_POST
+from .values import news, TYPE_OF_POST
 from django.urls import reverse
+
 
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -98,4 +98,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment:{self.post.title}[{self.user.username}]'
-

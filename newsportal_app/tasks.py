@@ -1,8 +1,8 @@
-'''
+"""
 py manage.py runserver
 open redis-server.exe as administrator
 celery -A newsportal_project worker -l INFO --pool=solo
-'''
+"""
 from datetime import date, timedelta
 
 from celery import shared_task
@@ -49,7 +49,10 @@ def send_newsletter():
                 'newsletter.html',
                 {
                     'name': sub.username,
-                    'posts': Post.objects.filter(date_of_creation__date__gte=(date.today()-timedelta(weeks=1)), category__name__contains=category.name),
+                    'posts': Post.objects.filter(
+                        date_of_creation__date__gte=(date.today()-timedelta(weeks=1)),
+                        category__name__contains=category.name
+                    ),
                     'link': f"{settings.SITE_URL}/newspaper/"
                 }
             )
