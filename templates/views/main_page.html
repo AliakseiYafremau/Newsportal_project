@@ -1,5 +1,4 @@
 {% extends 'flatpages/default.html' %}
-{% load cache %}
 {% load i18n %}
 
 {% block title%}
@@ -7,9 +6,7 @@ User page of {{ request.user.username }}
 {% endblock title%}
 
 {% block content %}
-{% cache 10 header %}
 Here you can find your information
-{% endcache %}
 {% if not is_author %}
 <form action="{% url 'add_to_authors' %}" method="post">
     {% csrf_token %}
