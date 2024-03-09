@@ -15,11 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from newsportal_app.views import Index
 
 urlpatterns = [
+    path('', Index.as_view()),
     path('admin/', admin.site.urls),
     path('pages/', include('django.contrib.flatpages.urls')),
     path('newspaper/', include('newsportal_app.urls')),
     path('accounts/', include('allauth.urls')),
+    path('i18n/', include('django.conf.urls.i18n')), # подключаем встроенные эндопинты для работы с локализацией
     #path('sign/', include('sign.urls')),
 ]

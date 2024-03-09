@@ -6,11 +6,19 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.views.generic.base import TemplateView, View
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import Group
+from django.utils.translation import gettext as _
 
 from .forms import PostForm
 from .values import news, article
 from .filters import PostFilter, PostSearchFilter
 from .models import Post, Author, Category
+
+
+class Index(View):
+    def get(self, request):
+        string = _('Hello, world')
+
+        return HttpResponse(string)
 
 
 class PostList(ListView):
@@ -131,7 +139,7 @@ def subscribe(request, pk):
     category = Category.objects.get(id=pk)
     category.subscribers.add(user)
 
-    message = 'You are successfully subscribed'
+    message = _('You are successfully subscribed')
 
     return render(request, 'views/subscribe.html', {'category': category, 'message': message})
 

@@ -1,5 +1,4 @@
 {% extends 'flatpages/default.html' %}
-
 {% block title%}
 Invalid Create Form
 {% endblock title%}
@@ -9,6 +8,6 @@ Invalid Create Form
 {{ username }}, You cannot add more than 3 posts
 <form action="{% url 'post_list' %}" method="post">
     {% csrf_token %}
-    <button type="submit">Return to news list</button>
+    <button type="submit">"Return to news list"</button>
 </form>
 {% endblock content %}
