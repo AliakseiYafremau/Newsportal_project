@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-09 17:32+0100\n"
+"POT-Creation-Date: 2024-03-10 11:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,53 +30,70 @@ msgstr "Привет, мир"
 msgid "You are successfully subscribed"
 msgstr "Вы успешно подписались"
 
+#: .\templates\flatpages\default.html:9
+msgid "My final project"
+msgstr "Мой финальный проект"
+
 #: .\templates\flatpages\default.html:25
 msgid "Create news"
-msgstr ""
+msgstr "Создать новость"
 
 #: .\templates\flatpages\default.html:27
 msgid "News"
-msgstr ""
+msgstr "Новость"
 
 #: .\templates\flatpages\default.html:30
 msgid "Log in"
-msgstr ""
+msgstr "Вход"
 
-#: .\templates\views\categories.html:7
+#: .\templates\views\categories.html:7 .\templates\views\news.html:7
 msgid "Newsportal"
 msgstr "Новостной портал"
 
 #: .\templates\views\categories.html:11 .\templates\views\categories.html:33
+#: .\templates\views\news.html:28
 msgid "Category"
-msgstr ""
+msgstr "Категория"
 
-#: .\templates\views\categories.html:29
+#: .\templates\views\categories.html:15
+msgid "Subscribe"
+msgstr "Подписаться"
+
+#: .\templates\views\categories.html:23 .\templates\views\search.html:9
+msgid "Search"
+msgstr "Поиск"
+
+#: .\templates\views\categories.html:29 .\templates\views\news.html:24
 msgid "Title"
-msgstr ""
+msgstr "Заголовок"
 
-#: .\templates\views\categories.html:30
+#: .\templates\views\categories.html:30 .\templates\views\news.html:25
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
-#: .\templates\views\categories.html:31
+#: .\templates\views\categories.html:31 .\templates\views\news.html:26
 msgid "Author"
 msgstr "Автор"
 
-#: .\templates\views\categories.html:32
+#: .\templates\views\categories.html:32 .\templates\views\news.html:27
 msgid "Type"
 msgstr "Тип"
 
-#: .\templates\views\categories.html:34
+#: .\templates\views\categories.html:34 .\templates\views\news.html:29
 msgid "Text"
 msgstr "Текст"
 
-#: .\templates\views\categories.html:35
+#: .\templates\views\categories.html:35 .\templates\views\news.html:30
 msgid "Rating"
 msgstr "Рейтинг"
 
 #: .\templates\views\categories.html:56
 msgid "No posts!"
 msgstr "Постов нет!"
+
+#: .\templates\views\main_page.html:9
+msgid "Here you can find your information"
+msgstr "Здесь вы можете найти свою информацию"
 
 #: .\templates\views\main_page.html:13
 msgid "Do you want to become an author?"
@@ -86,7 +103,44 @@ msgstr "Хотите стать автором?"
 msgid "Log out"
 msgstr "Выход"
 
+#: .\templates\views\news.html:11
+msgid "Our news:"
+msgstr "Наши новости:"
+
+#: .\templates\views\news.html:51
+msgid "There are not posts!"
+msgstr "Здесь нет постов!"
+
+#: .\templates\views\post.html:7
+msgid "Post"
+msgstr "Пост"
+
+#: .\templates\views\post.html:18
+msgid "Edit"
+msgstr "Изменить"
+
+#: .\templates\views\post.html:22 .\templates\views\post_delete.html:9
+#: .\templates\views\post_delete.html:10
+msgid "Delete"
+msgstr "Удалить"
+
+#: .\templates\views\post_create.html:5
+msgid "Post create"
+msgstr "Создание поста"
+
+#: .\templates\views\post_create.html:10 .\templates\views\post_update.html:10
+msgid "Save"
+msgstr "Сохранить"
+
+#: .\templates\views\post_delete.html:5
+msgid "Deleting of post"
+msgstr "Удаление поста"
+
+#: .\templates\views\post_update.html:5
+msgid "Post update"
+msgstr "Изменение поста"
+
 #, fuzzy
 #~| msgid "You are successfully subscribed"
 #~ msgid "You successfully logout"
-#~ msgstr "Вы успешно подписались"
+#~ msgstr "Вы успешно вышли"

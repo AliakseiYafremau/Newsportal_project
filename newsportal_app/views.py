@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext as _
 
-from .forms import PostForm
+from .forms import PostCreateForm, PostUpdateForm
 from .values import news, article
 from .filters import PostFilter, PostSearchFilter
 from .models import Post, Author, Category
@@ -59,7 +59,7 @@ class PostDetail(DetailView):
 class PostCreate(PermissionRequiredMixin, CreateView):
     """ Представление создания новости """
     permission_required = ('newsportal_app.add_post', )
-    form_class = PostForm
+    form_class = PostCreateForm
     model = Post
     template_name = 'views/post_create.html'
 
@@ -82,7 +82,7 @@ class PostCreate(PermissionRequiredMixin, CreateView):
 class PostUpdate(PermissionRequiredMixin, UpdateView):
     """ Представление изменения новости """
     permission_required = ('newsportal_app.change_post', )
-    form_class = PostForm
+    form_class = PostUpdateForm
     model = Post
     template_name = 'views/post_update.html'
 

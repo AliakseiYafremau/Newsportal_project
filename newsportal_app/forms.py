@@ -10,7 +10,7 @@ from allauth.account.forms import SignupForm
 from django.contrib.auth.models import Group
 
 
-class PostForm(forms.ModelForm):
+class PostCreateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
@@ -32,6 +32,37 @@ class PostForm(forms.ModelForm):
                                                   date_of_creation__date=today).count()
         if current_post_number >= 3:
             raise ValidationError("You cannot add more than 3 posts")
+        text = cleaned_data.get("text")
+        title = cleaned_data.get("title")
+        for word in profanity_list:
+            if word in title:
+                raise ValidationError({
+                    "title": "Title has profanities"
+                })
+            if word in text:
+                raise ValidationError({
+                    "text": "Text has profanities"
+                })
+
+        return cleaned_data
+
+
+class PostUpdateForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        model = Post
+        fields = [
+            'category',
+            'title',
+            'text',
+        ]
+
+    def clean(self):
+        cleaned_data = super().clean()
+
         text = cleaned_data.get("text")
         title = cleaned_data.get("title")
         for word in profanity_list:

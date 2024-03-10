@@ -8,7 +8,7 @@
 {% endblock title %}
 
 {% block content %}
-   <h1>Our news:</h1>
+   <h1>{% trans "Our news:" %}</h1>
    <hr>
    {# Добавляем форму, которая объединяет набор полей, которые будут отправляться в запросе #}
    <form action="" method="get">
@@ -21,13 +21,13 @@
    {% if posts %}
        <table>
            <tr>
-               <th>Title</th>
-               <th>Date</th>
-               <th>Author</th>
-               <th>Type</th>
-               <th>Category</th>
-               <th>Text</th>
-               <th>Rating</th>
+               <th>{% trans "Title" %}</th>
+               <th>{% trans "Date" %}</th>
+               <th>{% trans "Author" %}</th>
+               <th>{% trans "Type" %}</th>
+               <th>{% trans "Category" %}</th>
+               <th>{% trans "Text" %}</th>
+               <th>{% trans "Rating" %}</th>
            </tr>
 
            {% for post in posts %}
@@ -48,7 +48,7 @@
 
        </table>
    {% else %}
-       <h2>There are not posts!</h2>
+       <h2>{% trans "There are not posts!" %}</h2>
    {% endif %}
 
    {% if page_obj.has_previous %}
