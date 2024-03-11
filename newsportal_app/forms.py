@@ -20,6 +20,7 @@ class PostCreateForm(forms.ModelForm):
         model = Post
         fields = [
             'category',
+            'type',
             'title',
             'text',
         ]
@@ -56,6 +57,7 @@ class PostUpdateForm(forms.ModelForm):
         model = Post
         fields = [
             'category',
+            'type',
             'title',
             'text',
         ]

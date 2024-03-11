@@ -14,15 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.shortcuts import redirect
 from django.urls import path, include
-from newsportal_app.views import Index
+
+from newsportal_app.views import redirect_to_main
 
 urlpatterns = [
+    path('', redirect_to_main),
     path('i18n/', include('django.conf.urls.i18n')), # подключаем встроенные эндопинты для работы с локализацией
-    path('', Index.as_view()),
     path('admin/', admin.site.urls),
     path('pages/', include('django.contrib.flatpages.urls')),
-    path('newspaper/', include('newsportal_app.urls')),
+    path('newspaper/', include('newsportal_app.urls'), name='newspaper'),
     path('accounts/', include('allauth.urls')),
     #path('sign/', include('sign.urls')),
 ]

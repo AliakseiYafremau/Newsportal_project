@@ -14,11 +14,8 @@ from .filters import PostFilter, PostSearchFilter
 from .models import Post, Author, Category
 
 
-class Index(View):
-    def get(self, request):
-        string = _('Hello, world')
-
-        return HttpResponse(string)
+def redirect_to_main(request):
+    return redirect('post_list')
 
 
 class PostList(ListView):
@@ -70,11 +67,13 @@ class PostCreate(PermissionRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = Author.objects.get(user=self.request.user)
-        product = form.save(commit='False')
-        if self.request.path == '/newspaper/news/create':
-            product.type = news
-        elif self.request.path == '/newspaper/article/create':
-            product.type = article
+
+        #product = form.save(commit='False')
+        #if self.request.path == '/newspaper/news/create':
+        #    product.type = news
+        #elif self.request.path == '/newspaper/article/create':
+        #    product.type = article
+
         form.instance.author = Author.objects.get(user=self.request.user)
         return super().form_valid(form)
 

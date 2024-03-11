@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-10 11:14+0100\n"
+"POT-Creation-Date: 2024-03-11 12:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,13 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\newsportal_app\views.py:19
-#, fuzzy
-#| msgid "Hello world"
-msgid "Hello, world"
-msgstr "Привет, мир"
-
-#: .\newsportal_app\views.py:142
+#: .\newsportal_app\views.py:137
 msgid "You are successfully subscribed"
 msgstr "Вы успешно подписались"
 
@@ -139,6 +133,11 @@ msgstr "Удаление поста"
 #: .\templates\views\post_update.html:5
 msgid "Post update"
 msgstr "Изменение поста"
+
+#, fuzzy
+#~| msgid "Hello world"
+#~ msgid "Hello, world"
+#~ msgstr "Привет, мир"
 
 #, fuzzy
 #~| msgid "You are successfully subscribed"
