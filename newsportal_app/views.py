@@ -1,3 +1,6 @@
+from django.utils import timezone
+
+import pytz
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.urls import reverse_lazy
@@ -32,8 +35,14 @@ class PostList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['current_time'] = timezone.now()
+        context['timezones'] = pytz.common_timezones
         context['filterset'] = self.filterset
         return context
+
+    def post(self, request):
+        request.session['django_timezone'] = request.POST.get('timezone')
+        return redirect('/')
 
 
 class PostSearchView(TemplateView):

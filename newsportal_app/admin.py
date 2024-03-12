@@ -1,9 +1,11 @@
 from django.contrib import admin
 from .models import Author, Post, PostCategory, Comment, Category
+from modeltranslation.admin import TranslationAdmin
 
 
 def nullfy_rating(modeladmin, request, queryset):
     queryset.update(rating=0)
+
 
 def increase_rating(modeladmin, request, queryset):
     for el in queryset:
@@ -26,6 +28,10 @@ decrease_rating.short_description = 'Понизить рейтинг на 1'
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'type', 'author', 'date_of_creation', 'rating')
     actions = [nullfy_rating, increase_rating, decrease_rating]
+
+
+class CategoryAdmin(TranslationAdmin):
+    model = Category
 
 
 admin.site.register(Author)

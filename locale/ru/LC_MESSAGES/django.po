@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-11 12:32+0100\n"
+"POT-Creation-Date: 2024-03-12 10:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,25 +20,29 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\newsportal_app\views.py:137
+#: .\newsportal_app\views.py:150
 msgid "You are successfully subscribed"
 msgstr "Вы успешно подписались"
 
-#: .\templates\flatpages\default.html:9
+#: .\templates\flatpages\default.html:10
 msgid "My final project"
 msgstr "Мой финальный проект"
 
-#: .\templates\flatpages\default.html:25
+#: .\templates\flatpages\default.html:26
 msgid "Create news"
 msgstr "Создать новость"
 
-#: .\templates\flatpages\default.html:27
+#: .\templates\flatpages\default.html:28
 msgid "News"
 msgstr "Новость"
 
-#: .\templates\flatpages\default.html:30
+#: .\templates\flatpages\default.html:31
 msgid "Log in"
 msgstr "Вход"
+
+#: .\templates\flatpages\default.html:63
+msgid "Time zone:"
+msgstr "Часовая зона: "
 
 #: .\templates\views\categories.html:7 .\templates\views\news.html:7
 msgid "Newsportal"
@@ -53,7 +57,8 @@ msgstr "Категория"
 msgid "Subscribe"
 msgstr "Подписаться"
 
-#: .\templates\views\categories.html:23 .\templates\views\search.html:9
+#: .\templates\views\categories.html:23 .\templates\views\news.html:18
+#: .\templates\views\search.html:9
 msgid "Search"
 msgstr "Поиск"
 
