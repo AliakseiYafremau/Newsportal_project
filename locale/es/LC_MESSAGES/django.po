@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-12 10:34+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\newsportal_app\views.py:150
+msgid "You are successfully subscribed"
+msgstr "Estás suscrito(a) exitosamente"
+
+#: .\templates\flatpages\default.html:10
+msgid "My final project"
+msgstr "Mi proyecto final"
+
+#: .\templates\flatpages\default.html:30
+msgid "Create news"
+msgstr "Crear una noticia"
+
+#: .\templates\flatpages\default.html:32
+msgid "News"
+msgstr "Noticias"
+
+#: .\templates\flatpages\default.html:35
+msgid "Log in"
+msgstr "Iniciar sesión"
+
+#: .\templates\flatpages\default.html:67
+msgid "Time zone:"
+msgstr "Zona horaria"
+
+#: .\templates\views\categories.html:7 .\templates\views\news.html:7
+msgid "Newsportal"
+msgstr "Portal de noticias"
+
+#: .\templates\views\categories.html:11 .\templates\views\categories.html:33
+#: .\templates\views\news.html:28
+msgid "Category"
+msgstr "Categoría"
+
+#: .\templates\views\categories.html:15
+msgid "Subscribe"
+msgstr "Suscribir"
+
+#: .\templates\views\categories.html:23 .\templates\views\news.html:18
+#: .\templates\views\search.html:9
+msgid "Search"
+msgstr "Buscar"
+
+#: .\templates\views\categories.html:29 .\templates\views\news.html:24
+msgid "Title"
+msgstr "Título"
+
+#: .\templates\views\categories.html:30 .\templates\views\news.html:25
+msgid "Date"
+msgstr "Fecha"
+
+#: .\templates\views\categories.html:31 .\templates\views\news.html:26
+msgid "Author"
+msgstr "Autor"
+
+#: .\templates\views\categories.html:32 .\templates\views\news.html:27
+msgid "Type"
+msgstr "Tipo"
+
+#: .\templates\views\categories.html:34 .\templates\views\news.html:29
+msgid "Text"
+msgstr "Texto"
+
+#: .\templates\views\categories.html:35 .\templates\views\news.html:30
+msgid "Rating"
+msgstr "Clasificación"
+
+#: .\templates\views\categories.html:56
+msgid "No posts!"
+msgstr "No hay noticias!"
+
+#: .\templates\views\main_page.html:9
+msgid "Here you can find your information"
+msgstr "Aqui puedes encontrar tu información"
+
+#: .\templates\views\main_page.html:13
+msgid "Do you want to become an author?"
+msgstr "Quieres ser autor?"
+
+#: .\templates\views\main_page.html:18
+msgid "Log out"
+msgstr "Salir"
+
+#: .\templates\views\news.html:11
+msgid "Our news:"
+msgstr "Nuestras noticias"
+
+#: .\templates\views\news.html:51
+msgid "There are not posts!"
+msgstr "Aqui no hay noticias"
+
+#: .\templates\views\post.html:7
+msgid "Post"
+msgstr "Noticia"
+
+#: .\templates\views\post.html:18
+msgid "Edit"
+msgstr "Editar"
+
+#: .\templates\views\post.html:22 .\templates\views\post_delete.html:9
+#: .\templates\views\post_delete.html:10
+msgid "Delete"
+msgstr "Eliminar"
+
+#: .\templates\views\post_create.html:5
+msgid "Post create"
+msgstr "Crear la noticia"
+
+#: .\templates\views\post_create.html:10 .\templates\views\post_update.html:10
+msgid "Save"
+msgstr "Guardar"
+
+#: .\templates\views\post_delete.html:5
+msgid "Deleting of post"
+msgstr "Eliminar la noticia"
+
+#: .\templates\views\post_update.html:5
+msgid "Post update"
+msgstr "Editar la noticia"

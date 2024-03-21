@@ -16,15 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path, include
+from django.views.generic import TemplateView
 
 from newsportal_app.views import redirect_to_main
 
 urlpatterns = [
-    path('', redirect_to_main),
+    #path('', redirect_to_main),
     path('i18n/', include('django.conf.urls.i18n')), # подключаем встроенные эндопинты для работы с локализацией
     path('admin/', admin.site.urls),
     path('pages/', include('django.contrib.flatpages.urls')),
     path('newspaper/', include('newsportal_app.urls'), name='newspaper'),
     path('accounts/', include('allauth.urls')),
-    #path('sign/', include('sign.urls')),
 ]

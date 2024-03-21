@@ -174,6 +174,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'django.contrib.sites',
     'django.contrib.flatpages',
+    'rest_framework',
 ]
 
 SITE_ID = 1
@@ -277,6 +278,7 @@ LOCALE_PATHS = [
 
 LANGUAGES = [
     ('en-us', 'English'),
+    ('es', 'Español'),
     ('ru', 'Русский'),
 ]
 
@@ -320,6 +322,15 @@ CACHES = {
         'LOCATION': os.path.join(BASE_DIR, 'cache_files'), # Указываем, куда будем сохранять кэшируемые файлы! Не забываем создать папку cache_files внутри папки с manage.py!
         'TIMEOUT': 30,
     }
+}
+
+REST_FRAMEWORK = {
+   'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+   'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+   'PAGE_SIZE': 10,
+   'DEFAULT_PERMISSION_CLASSES': [
+       'rest_framework.permissions.IsAuthenticated',
+   ]
 }
 
 # Настройка рассылки

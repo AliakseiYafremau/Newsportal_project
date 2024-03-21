@@ -10,8 +10,10 @@ from django.views.generic.base import TemplateView, View
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext as _
+from rest_framework import viewsets
 
 from .forms import PostCreateForm, PostUpdateForm
+from .serializers import AuthorSerializer, PostSerializer
 from .values import news, article
 from .filters import PostFilter, PostSearchFilter
 from .models import Post, Author, Category
@@ -160,3 +162,18 @@ def invalid_form(request):
 class CheckView(View):
     def get(self, request):
         return HttpResponse('hello')
+
+
+class AuthorViewSet(viewsets.ViewSet):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
+
+
+class PostNewsViewSet(viewsets.ViewSet):
+    queryset = Post.objects.filter(type='news')
+    serializer_class = PostSerializer
+
+
+class PostArticlesViewSet(viewsets.ViewSet):
+    queryset = Post.objects.filter(type='articles')
+    serializer_class = PostSerializer
