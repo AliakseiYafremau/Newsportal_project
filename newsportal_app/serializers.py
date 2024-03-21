@@ -4,7 +4,7 @@ from newsportal_app.models import Author, Post
 
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Post
+        model = Author
         fields = ['user', 'rating']
 
 
