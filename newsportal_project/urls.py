@@ -17,8 +17,15 @@ from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path, include
 from django.views.generic import TemplateView
+from rest_framework import routers
+from newsportal_app.views import AuthorViewSet, PostNewsViewSet, PostArticlesViewSet
 
 from newsportal_app.views import redirect_to_main
+
+router = routers.DefaultRouter()
+#router.register(r'author', AuthorViewSet)
+router.register(r'news', PostNewsViewSet, basename='news')
+router.register(r'articles', PostArticlesViewSet, basename='articles')
 
 urlpatterns = [
     #path('', redirect_to_main),
@@ -27,4 +34,6 @@ urlpatterns = [
     path('pages/', include('django.contrib.flatpages.urls')),
     path('newspaper/', include('newsportal_app.urls'), name='newspaper'),
     path('accounts/', include('allauth.urls')),
+    path('routers/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

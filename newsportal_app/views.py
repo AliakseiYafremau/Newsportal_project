@@ -164,16 +164,16 @@ class CheckView(View):
         return HttpResponse('hello')
 
 
-class AuthorViewSet(viewsets.ViewSet):
+class AuthorViewSet(viewsets.ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
 
 
-class PostNewsViewSet(viewsets.ViewSet):
-    queryset = Post.objects.filter(type='news')
+class PostNewsViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.filter(type='NE')
     serializer_class = PostSerializer
 
 
-class PostArticlesViewSet(viewsets.ViewSet):
-    queryset = Post.objects.filter(type='articles')
+class PostArticlesViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.filter(type='AR')
     serializer_class = PostSerializer
