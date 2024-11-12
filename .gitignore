@@ -1,2 +1,4 @@
 /.env
 /manage_commands.md
+venv
+**/__pycache__/
